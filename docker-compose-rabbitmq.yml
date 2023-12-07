@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  rabbitmq:
+    image: "rabbitmq:3.9-management"
+    container_name: "rabbitmq"
+    ports:
+      - "5672:5672"  # RabbitMQ default port
+      - "15672:15672"  # RabbitMQ management UI port
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "secretcookie"  # Replace with a secure cookie value
+      RABBITMQ_DEFAULT_USER: "admin"  # Replace with desired username
+      RABBITMQ_DEFAULT_PASS: "adminpass"  # Replace with desired password
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+volumes:
+  rabbitmq_data:
